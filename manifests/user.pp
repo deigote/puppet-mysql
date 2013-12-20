@@ -9,7 +9,7 @@ define mysql::user($user, $password, $database, $host = 'localhost', $privileges
 	    require => Mysql::Database["$database"],
     } 
 
-    exec { "flush-priviliges-$user-$database-$host"
+    exec { "flush-priviliges-$user-$database-$host":
     	command => "echo \"flush privileges;\" | mysql -u root -p$mysql::install::root_pwd",
     	require => Mysql::Database["$database"],
     }
